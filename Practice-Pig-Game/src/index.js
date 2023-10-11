@@ -7,9 +7,9 @@ const currentScoreOfPlayer1 = document.querySelector("#current--0");
 const player2 = document.querySelector(".player--1");
 const scoreOfPlayer2 = document.querySelector("#score--1");
 const currentScoreOfPlayer2 = document.querySelector("#current--1");
-const dice = document.querySelector(".dice");
+const number = document.querySelector(".dice");
 const newGameButton = document.querySelector(".btn--new");
-const rollDiceButton = document.querySelector(".btn--roll");
+const generateNumberButton = document.querySelector(".btn--roll");
 const holdButton = document.querySelector(".btn--hold");
 
 let scores, currentScore, activePlayer;
@@ -24,7 +24,7 @@ const initialStep = function () {
   scoreOfPlayer2.textContent = 0;
   currentScoreOfPlayer1.textContent = 0;
   currentScoreOfPlayer2.textContent = 0;
-  dice.classList.add("hidden");
+  number.classList.add("hidden");
   player1.classList.remove("player--winner");
   player2.classList.remove("player--winner");
   player1.classList.add("player--active");
@@ -48,3 +48,29 @@ const switchThePlayer = function () {
 
 // Function to start a new game
 newGameButton.addEventListener("click", initialStep());
+
+// Function to roll the dice
+generateNumberButton.addEventListener("click", function () {
+  // generate random number from 1 to 9
+
+  const randomNumber = Math.floor(Math.random() * 9) + 1;
+
+  // display number
+
+  number.classList.remove("hidden");
+  number.src = "number-" + randomNumber + ".svg";
+
+  // check for number 1
+
+  if (number !== 1) {
+    currentScore = currentScore + number;
+    document.querySelector(`#current--${activePlayer}`).textContent =
+      currentScore;
+  } else {
+    activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
+    currentScore = 0;
+    document.querySelector("#current--0").textContent = currentScore;
+    document.querySelector("#current--1").textContent = currentScore;
+  }
+});
+// Function to hold the score

@@ -1,10 +1,10 @@
 "use strict";
 
 // Selecting Elements
-const player1 = document.querySelector(".player--0");
+const player1 = document.querySelector("#player--0");
 const scoreOfPlayer1 = document.querySelector("#score--0");
 const currentScoreOfPlayer1 = document.querySelector("#current--0");
-const player2 = document.querySelector(".player--1");
+const player2 = document.querySelector("#player--1");
 const scoreOfPlayer2 = document.querySelector("#score--1");
 const currentScoreOfPlayer2 = document.querySelector("#current--1");
 const number = document.querySelector(".number");
@@ -20,6 +20,9 @@ const initialStep = function () {
   currentScore = 0;
   activePlayer = 0;
   isPlaying = true;
+
+  document.querySelector(`#name--0`).textContent = `PLAYER 1`;
+  document.querySelector(`#name--1`).textContent = `PLAYER 2`;
 
   scoreOfPlayer1.textContent = 0;
   scoreOfPlayer2.textContent = 0;
@@ -77,21 +80,26 @@ holdButton.addEventListener("click", function () {
   if (isPlaying) {
     if (currentScore !== 0) {
       scores[activePlayer] = scores[activePlayer] + currentScore;
-      scoreOfPlayer1.textContent = scores[activePlayer];
-      switchThePlayer();
+      document.querySelector(`#score--${activePlayer}`).textContent =
+        scores[activePlayer];
 
-      if (scores[activePlayer] >= 50) {
-        isPlaying = false;
+      if (scores[activePlayer] >= 20) {
         document
-          .querySelector(`.player--${activePlayer}`)
+          .querySelector(`#player--${activePlayer}`)
           .classList.remove("player--active");
+
         document
-          .querySelector(`.player--${activePlayer}`)
+          .querySelector(`#player--${activePlayer}`)
           .classList.add("player--winner");
-        number.classList.add("hidden");
-      } else {
-        switchThePlayer();
+
+        document.querySelector(
+          `#name--${activePlayer}`
+        ).textContent = `PLAYER ${activePlayer + 1} HAS WON`;
+
+        number.classList.toggle("hidden");
+        isPlaying = false;
       }
+      switchThePlayer();
     } else {
       alert(
         "The Player must have atleast 1 current score before adding to the total score!!"

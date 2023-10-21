@@ -15,6 +15,7 @@ const generateNumberButton = document.querySelector(".btn--generate");
 const holdButton = document.querySelector(".btn--hold");
 
 // Making base variables
+let scores, currentScore, activePlayer, isPlaying;
 
 // Initial function to undo the game to the starting stage
 

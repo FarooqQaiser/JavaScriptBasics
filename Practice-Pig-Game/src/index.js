@@ -18,6 +18,27 @@ const holdButton = document.querySelector(".btn--hold");
 let scores, currentScore, activePlayer, isPlaying;
 
 // Initial function to undo the game to the starting stage
+const theInitialStep = function () {
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  isPlaying = true;
+
+  player1Score.textContent = "0";
+  player2Score.textContent = "0";
+  player1CurrentScore.textContent = "0";
+  player2CurrentScore.textContent = "0";
+
+  player1Name.textContent = "PLAYER 1";
+  player2Name.textContent = "PLAYER 2";
+
+  player1.classList.remove("player--winner");
+  player2.classList.remove("player--winner");
+  player1.classList.add("player--active");
+  player2.classList.remove("player--active");
+  numberImages.classList.add("hidden");
+};
+theInitialStep();
 
 // Function to switch between the players
 

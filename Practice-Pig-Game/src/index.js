@@ -41,6 +41,13 @@ const theInitialStep = function () {
 theInitialStep();
 
 // Function to switch between the players
+const switchThePlayer = function () {
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  currentScore = 0;
+  activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
+  player1.classList.toggle("player--active");
+  player2.classList.toggle("player--active");
+};
 
 // Function to start a new game
 
